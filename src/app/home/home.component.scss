@@ -1,8 +1,43 @@
-.mat-sidenav {
-  max-width: 20%;
-  min-width: 20%;
+
+.card-container {
+  display: flex;
+  justify-content: center;
+  height: 100%;
 }
 
-.mat-sidenav-content{
-  height: 100%;
+
+.board {
+  display: flex;
+  color: white;
+  min-height: 96px;
+  min-width: 200px;
+  margin-top: 40px;
+  margin-right: 10px;
+  background-image: url("../../assets/pup.jpg");
+  background-position: center;
+  text-align: center;
+  padding-top: 50px;
+  max-width: 200px;
+  max-height: 96px;
+  border-radius: 5px;
+}
+
+.board-container {
+  margin-top: 40px;
+}
+
+.sidebar{
+  margin-top: 35px;
+  padding-right: 50px;
+}
+
+.board-title {
+  padding-top: 10px;
+}
+
+.title{
+  margin-left: 50px;
+  margin-bottom: 0px;
+  height: 20px;
+  width: 300px;
 }

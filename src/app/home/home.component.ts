@@ -1,6 +1,8 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { MatSidenav } from '@angular/material/sidenav';
-import { SidenavService } from '../services/sidenav.service';
+import { MatDialog } from '@angular/material/dialog';
+import { BoardDialogComponent } from '../board-dialog/board-dialog.component';
+
+
 
 @Component({
   selector: 'app-home',
@@ -9,11 +11,11 @@ import { SidenavService } from '../services/sidenav.service';
 })
 export class HomeComponent implements OnInit {
 
-  @ViewChild('sidenav') public sidenav: MatSidenav;
 
-  constructor(private sideNavService: SidenavService) {
-  }
+  constructor() {}
 
   ngOnInit() {
+
   }
 }
+

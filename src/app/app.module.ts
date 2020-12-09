@@ -11,8 +11,12 @@ import {MatIconModule} from '@angular/material/icon';
 import {MatButtonModule} from '@angular/material/button';
 import { RouterModule } from '@angular/router';
 import {MatSidenavModule} from '@angular/material/sidenav';
-import { SidenavService } from './services/sidenav.service';
-import { SidenavComponent } from './sidenav/sidenav.component';
+import { MatDialogModule } from '@angular/material/dialog';
+import { BoardDialogComponent } from './board-dialog/board-dialog.component';
+import {MatCardModule} from '@angular/material/card';
+import {MatListModule} from '@angular/material/list';
+import {MatGridListModule} from '@angular/material/grid-list';
+
 
 
 
@@ -21,7 +25,7 @@ import { SidenavComponent } from './sidenav/sidenav.component';
     AppComponent,
     HomeComponent,
     HeaderToolbarComponent,
-    SidenavComponent
+    BoardDialogComponent,
   ],
   imports: [
     BrowserModule,
@@ -31,9 +35,13 @@ import { SidenavComponent } from './sidenav/sidenav.component';
     MatButtonModule,
     RouterModule,
     MatSidenavModule,
+    MatDialogModule,
+    MatCardModule,
+    MatListModule,
+    MatGridListModule,
     BrowserAnimationsModule
   ],
-  providers: [SidenavService],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
