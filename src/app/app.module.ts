@@ -16,6 +16,7 @@ import { BoardDialogComponent } from './board-dialog/board-dialog.component';
 import {MatCardModule} from '@angular/material/card';
 import {MatListModule} from '@angular/material/list';
 import {MatGridListModule} from '@angular/material/grid-list';
+import { SignInComponent } from './sign-in/sign-in.component';
 
 
 
@@ -26,6 +27,7 @@ import {MatGridListModule} from '@angular/material/grid-list';
     HomeComponent,
     HeaderToolbarComponent,
     BoardDialogComponent,
+    SignInComponent,
   ],
   imports: [
     BrowserModule,

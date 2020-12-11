@@ -5,7 +5,7 @@
     <h2 class="board-title">New board</h2>
 
   <div class="board">
-    <h1>This is a test board</h1>
+    <h1 *ngFor="let item of boards">{{item.title}}</h1>
   </div>
 
   </div>

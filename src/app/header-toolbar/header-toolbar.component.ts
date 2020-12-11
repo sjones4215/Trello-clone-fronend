@@ -15,7 +15,7 @@ export class HeaderToolbarComponent implements OnInit {
 
 
   ngOnInit(): void {
-
+    
   }
 
   openDialog() {
