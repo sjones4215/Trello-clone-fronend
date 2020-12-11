@@ -7,11 +7,10 @@
 
 
 .board {
-  display: flex;
   color: white;
   min-height: 96px;
   min-width: 200px;
-  margin-top: 40px;
+  margin-top: 10px;
   margin-right: 10px;
   background-image: url("../../assets/pup.jpg");
   background-position: center;
@@ -24,11 +23,6 @@
 
 .board-container {
   margin-top: 40px;
-}
-
-.sidebar{
-  margin-top: 35px;
-  padding-right: 50px;
 }
 
 .board-title {
