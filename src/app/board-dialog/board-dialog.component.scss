@@ -1,9 +1,16 @@
 
 
 .close {
-  float: right;
+  padding-bottom: 20px;
+  margin-left: 75%;
 
   &:hover {
+    cursor: pointer;
+  }
+}
+
+.board-title{
+  &:hover{
     cursor: pointer;
   }
 }

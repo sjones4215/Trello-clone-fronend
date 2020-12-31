@@ -2,12 +2,15 @@
 
   <div class="board-container">
 
-    <h2 class="board-title">New board</h2>
+    <h2 class="board-title">New boards</h2>
 
-  <div class="board">
-    <h1 *ngFor="let item of boards">{{item.title}}</h1>
+  <div class="board" *ngFor="let item of boards" (click)="boardProfile(boards)">
+    <h1>
+      {{item.title}}
+    </h1>
   </div>
 
   </div>
 
 </div>
+

@@ -1,8 +1,11 @@
 .toolbar {
-  height: 4.6%;
+  display: flex;
+  justify-content: space-between;
+  height: 5%;
   background: #3d5afe;
   padding-left: 5px;
 }
+
 
 .buttons {
   display: flex;
@@ -32,5 +35,20 @@
     -webkit-filter: brightness(90%);
     cursor: pointer;
   }
+}
+
+.right-content{
+  display: flex;
+  justify-content: flex-end;
+}
+
+.sign-in{
+  border-radius: 5px;
+  background:#627aff;
+}
+
+.sign-out{
+  border-radius: 5px;
+  background:#627aff;
 }
 

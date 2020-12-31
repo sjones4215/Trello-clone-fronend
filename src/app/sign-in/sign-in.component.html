@@ -1,0 +1,22 @@
+<div class="card">
+  <mat-card class="sign-in">
+    <form [formGroup] = "formGroup">
+      <mat-card-content class>
+        <div class="header">
+          <h3>Please sign-in</h3>
+        </div>
+        <div class="form-fields">
+          <mat-form-field for="email" class="email">
+            <mat-label>Email</mat-label>
+            <input matInput name="email" type="text" class="email" id="email" aria-describedby="emailHelp" formControlName="email">
+          </mat-form-field>
+          <mat-form-field for="password" class="password">
+            <mat-label>Password</mat-label>
+            <input matInput class="password" id="password" aria-describedby="passwordHelp" formControlName="password">
+          </mat-form-field>
+          <button mat-raised-button class="submit" (click)="logIn()">Submit</button>
+        </div>
+      </mat-card-content>
+    </form>
+  </mat-card>
+</div>

@@ -17,6 +17,12 @@ import {MatCardModule} from '@angular/material/card';
 import {MatListModule} from '@angular/material/list';
 import {MatGridListModule} from '@angular/material/grid-list';
 import { SignInComponent } from './sign-in/sign-in.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import {MatInputModule} from '@angular/material/input';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { AuthInterceptor } from './auth/auth.interceptor';
+import { ErrorStateMatcher, ShowOnDirtyErrorStateMatcher } from '@angular/material/core';
+import { BoardPageComponent } from './board-page/board-page.component';
 
 
 
@@ -28,6 +34,7 @@ import { SignInComponent } from './sign-in/sign-in.component';
     HeaderToolbarComponent,
     BoardDialogComponent,
     SignInComponent,
+    BoardPageComponent,
   ],
   imports: [
     BrowserModule,
@@ -41,9 +48,16 @@ import { SignInComponent } from './sign-in/sign-in.component';
     MatCardModule,
     MatListModule,
     MatGridListModule,
-    BrowserAnimationsModule
+    FormsModule,
+    ReactiveFormsModule,
+    BrowserAnimationsModule,
+    MatInputModule,
+    HttpClientModule
   ],
-  providers: [],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
+    // {provide: ErrorStateMatcher, useClass: ShowOnDirtyErrorStateMatcher}
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -12,13 +12,17 @@
   min-width: 200px;
   margin-top: 10px;
   margin-right: 10px;
-  background-image: url("../../assets/pup.jpg");
+  background:blue ;
   background-position: center;
   text-align: center;
   padding-top: 50px;
   max-width: 200px;
   max-height: 96px;
   border-radius: 5px;
+
+  &:hover{
+    cursor: pointer;
+  }
 }
 
 .board-container {

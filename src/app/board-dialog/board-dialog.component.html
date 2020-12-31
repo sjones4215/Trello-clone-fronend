@@ -1,3 +1,12 @@
 <div class="container">
-  <mat-icon class="close" [mat-dialog-close]>close</mat-icon>
+  <button class="close" mat-icon-button [mat-dialog-close]>
+    <mat-icon [mat-dialog-close]>close</mat-icon>
+  </button>
+  <div class="board-title" *ngFor="let board of boards">
+    <mat-list>
+      <mat-list-item (click)="boardProfile(board)">
+        {{board.title}}
+      </mat-list-item>
+    </mat-list>
+  </div>
 </div>

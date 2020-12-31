@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { Board } from '../models/board';
+import { BoardService } from '../services/board.service';
 
 @Component({
   selector: 'app-board-dialog',
@@ -6,10 +9,22 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./board-dialog.component.scss']
 })
 export class BoardDialogComponent implements OnInit {
-
-  constructor() { }
+  boards: Board[] = []
+  constructor(
+    private boardService: BoardService,
+    private router: Router,
+    ) { }
 
   ngOnInit(): void {
+    this.boardService.allBoards().subscribe(data => {
+      if (data) {
+        this.boards = data
+      }
+    })
+  }
+
+  boardProfile(board: Board) {
+    this.router.navigate(['board-page/' + board.id])
   }
 
 }

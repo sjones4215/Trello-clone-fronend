@@ -1,11 +1,18 @@
-<mat-toolbar class="toolbar" color="primary">
+<mat-toolbar class="toolbar" color="primary" *ngIf="!loggedIn">
+</mat-toolbar>
+
+<mat-toolbar class="toolbar" color="primary" *ngIf="loggedIn">
   <div class="buttons">
-  <button mat-icon-button class="home" routerLink='/'>
-    <mat-icon>home</mat-icon></button>
+    <div class="home">
+      <button mat-icon-button class="home" routerLink ="/home">
+      <mat-icon>home</mat-icon></button>
+    </div>
     <button class="boards" mat-button (click)="openDialog()">
       <mat-icon>list_alt</mat-icon>Boards</button>
     </div>
-    <div class="sign-in">
-      <button class="in" mat-button routerLink="/sign-in">sign-in</button>
+  <div class="right-content">
+    <div class="sign-out" *ngIf="loggedIn">
+      <button class="sign-out" mat-button (click)="logOut()">sign-out</button>
     </div>
+  </div>
 </mat-toolbar>
