@@ -7,12 +7,17 @@
       <button mat-icon-button class="home" routerLink ="/home">
       <mat-icon>home</mat-icon></button>
     </div>
-    <button class="boards" mat-button (click)="openDialog()">
+    <button class="boards" mat-button (click)="openBoardDialog()">
       <mat-icon>list_alt</mat-icon>Boards</button>
+    </div>
+    <div class="list-title" *ngIf="board">
+      <h3>{{board.title}}</h3>
     </div>
   <div class="right-content">
     <div class="sign-out" *ngIf="loggedIn">
-      <button class="sign-out" mat-button (click)="logOut()">sign-out</button>
+      <button class="sign-out" mat-icon-button (click)="openLogoutDialog()">
+        <mat-icon>exit_to_app</mat-icon>
+      </button>
     </div>
   </div>
 </mat-toolbar>

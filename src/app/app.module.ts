@@ -23,6 +23,20 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthInterceptor } from './auth/auth.interceptor';
 import { ErrorStateMatcher, ShowOnDirtyErrorStateMatcher } from '@angular/material/core';
 import { BoardPageComponent } from './board-page/board-page.component';
+import { SignUpComponent } from './sign-up/sign-up.component';
+import { NewBoardDialogComponent } from './new-board-dialog/new-board-dialog.component';
+import { UserPageComponent } from './user-page/user-page.component';
+import { SignOutDialogComponent } from './sign-out-dialog/sign-out-dialog.component';
+import { SpinnerOverlayComponent } from './spinner-overlay/spinner-overlay.component';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import {MatDividerModule} from '@angular/material/divider';
+import {MatTooltipModule} from '@angular/material/tooltip';
+import { AddListDialogComponent } from './add-list-dialog/add-list-dialog.component';
+import {MatExpansionModule} from '@angular/material/expansion';
+
+
+
+
 
 
 
@@ -35,6 +49,12 @@ import { BoardPageComponent } from './board-page/board-page.component';
     BoardDialogComponent,
     SignInComponent,
     BoardPageComponent,
+    SignUpComponent,
+    NewBoardDialogComponent,
+    UserPageComponent,
+    SignOutDialogComponent,
+    SpinnerOverlayComponent,
+    AddListDialogComponent,
   ],
   imports: [
     BrowserModule,
@@ -52,6 +72,10 @@ import { BoardPageComponent } from './board-page/board-page.component';
     ReactiveFormsModule,
     BrowserAnimationsModule,
     MatInputModule,
+    MatProgressSpinnerModule,
+    MatDividerModule,
+    MatTooltipModule,
+    MatExpansionModule,
     HttpClientModule
   ],
   providers: [

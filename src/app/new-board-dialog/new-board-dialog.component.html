@@ -1,0 +1,28 @@
+<div class="card">
+  <form>
+    <mat-dialog-content>
+      <p class="header">Fill out and submit</p>
+      <mat-form-field for="title" class="title" appearance="fill">
+        <mat-label>Title</mat-label>
+        <input matInput name="title" type="text" class="title" id="title" aria-describedby="titleHelp" [(ngModel)]="newBoard.title">
+      </mat-form-field>
+      <mat-form-field for="description" class="description" appearance="fill">
+        <mat-label>description</mat-label>
+        <textarea matInput
+        name="description"
+        type="text"
+        class="descritpion"
+        aria-describedby="description"
+        [(ngModel)]="newBoard.description"
+        cdkTextareaAutosize
+        #autosize="cdkTextareaAutosize"
+        cdkAutosizeMinRows="1"
+        cdkAutosizeMaxRows="5"></textarea>
+      </mat-form-field>
+      <div class="buttons">
+        <button mat-raised-button class="submit" (click)="createBoard()"[mat-dialog-close]>Submit</button>
+        <button mat-raised-button class="cancel" [mat-dialog-close]>Cancel</button>
+      </div>
+    </mat-dialog-content>
+  </form>
+</div>

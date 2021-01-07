@@ -12,6 +12,9 @@ import { UserService } from '../services/user.service';
   styleUrls: ['./sign-in.component.scss']
 })
 export class SignInComponent implements OnInit {
+
+  hide = true;
+
   formGroup: FormGroup = new FormGroup({
     email: new FormControl('', [Validators.required, Validators.email]),
     password: new FormControl('', [Validators.required])
@@ -26,7 +29,7 @@ export class SignInComponent implements OnInit {
     this.userService.signIn(newUser).subscribe((data: User) => {
     this.localStorageService.saveUser(data)
     if(data) {
-      this.router.navigate([''])
+      this.router.navigate(['/home'])
       }
     })
   }

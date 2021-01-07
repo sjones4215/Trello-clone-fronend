@@ -4,11 +4,13 @@ import { AuthGuard } from './auth/auth.guard';
 import { BoardPageComponent } from './board-page/board-page.component';
 import { HomeComponent } from './home/home.component';
 import { SignInComponent } from './sign-in/sign-in.component';
+import { SignUpComponent } from './sign-up/sign-up.component';
 
 const routes: Routes = [
-  { path: '', component: HomeComponent, canActivate: [AuthGuard]},
+  { path: '', component: SignInComponent},
   { path: 'sign-in', component: SignInComponent },
-  { path: 'home', redirectTo:'', pathMatch:'full', canActivate: [AuthGuard]},
+  { path: 'sign-up', component: SignUpComponent },
+  { path: 'home', component: HomeComponent, canActivate: [AuthGuard]},
   { path: 'board-page/:id', component: BoardPageComponent, canActivate: [AuthGuard]}
 ];
 

@@ -18,4 +18,8 @@ export class UserService {
   signOut(id: number) {
     return this.http.delete( this.baseUrl + 'user/logout?id=')
   }
+
+  signUp(user: NewUser) {
+    return this.http.post( this.baseUrl + 'users/create', user)
+  }
 }

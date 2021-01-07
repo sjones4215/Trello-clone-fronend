@@ -1,0 +1,12 @@
+<form>
+  <div class="form-container">
+      <mat-form-field class="title">
+        <mat-label>Please fill out title and submit</mat-label>
+      <input matInput name="title" type="text" class="title" id="title" aria-describedby="titleHelp" [(ngModel)]="newList.title">
+    </mat-form-field>
+    <div class="buttons">
+      <button mat-raised-button class="submit" (click)="createList()" [mat-dialog-close]>Submit</button>
+      <button mat-raised-button class="cancel" [mat-dialog-close]>Cancel</button>
+    </div>
+  </div>
+</form>

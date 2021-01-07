@@ -9,15 +9,17 @@
   display: flex;
   justify-content: center;
   height: 20%;
-  width: 20%;
+  width: 25%;
 }
 
 .header{
   text-align: center;
+  width: 100%;
 }
 
 .form-fields{
   width: 100%;
+  margin-bottom: 10px;
 }
 
 .password {
@@ -29,4 +31,8 @@
   color: white;
   width: 100%;
   background:#3d5afe;
+}
+
+.link{
+  text-align: center;
 }

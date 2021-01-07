@@ -2,11 +2,19 @@
   <button class="close" mat-icon-button [mat-dialog-close]>
     <mat-icon [mat-dialog-close]>close</mat-icon>
   </button>
-  <div class="board-title" *ngFor="let board of boards">
-    <mat-list>
+  <div class="board-title">
+    <mat-list *ngFor="let board of boards">
+      <mat-divider></mat-divider>
       <mat-list-item (click)="boardProfile(board)">
         {{board.title}}
       </mat-list-item>
     </mat-list>
+    <div class="no-board" *ngIf="boards.length === 0">
+      <mat-list>
+        <mat-list-item>
+          <p>{{this.message}}</p>
+        </mat-list-item>
+      </mat-list>
+    </div>
   </div>
 </div>

@@ -18,7 +18,7 @@ $my-theme-primary: mat-palette($mat-blue-grey);
 $my-theme-accent:  mat-palette($mat-blue-grey);
 
 // The warn palette is optional (defaults to red).
-$my-theme-warn:    mat-palette($mat-green);
+$my-theme-warn:    mat-palette($mat-red);
 
 // Create the theme object. A theme consists of configurations for individual
 // theming systems such as `color` or `typography`.

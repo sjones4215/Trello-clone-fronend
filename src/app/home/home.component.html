@@ -1,16 +1,18 @@
-<div class="card-container">
-
-  <div class="board-container">
-
-    <h2 class="board-title">New boards</h2>
-
-  <div class="board" *ngFor="let item of boards" (click)="boardProfile(boards)">
-    <h1>
-      {{item.title}}
-    </h1>
-  </div>
-
-  </div>
-
-</div>
+<h1 class="header">Boards</h1>
+  <mat-card class="boards">
+    <mat-card-content>
+        <div class="card-container">
+      <div class="board" *ngFor="let item of boards" (click)="boardProfile(item)">
+          <h1>
+            {{item.title}}
+          </h1>
+        </div>
+        <div class="board" (click)="openDialog()">
+          <button mat-icon-button (click)="openDialog()">
+            <mat-icon [inline]="true" class="add">add</mat-icon>
+          </button>
+        </div>
+      </div>
+      </mat-card-content>
+    </mat-card>
 

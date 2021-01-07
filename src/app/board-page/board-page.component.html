@@ -1,1 +1,63 @@
-<p>board-page works!</p>
+<div class="board-title" *ngIf="board">
+  <h1 class="text">{{board.title}}</h1>
+  <button  mat-icon-button class="add-list" (click)="addListDialog()">
+    <mat-icon class="add-icon" matTooltip="click here to add a list">note_add</mat-icon>
+  </button>
+</div>
+
+  <div class="board-container" *ngIf="lists.length !== 0">
+    <mat-card class="board-card" *ngFor="let list of lists">
+      <mat-card-content>
+      <h3 class="header">
+        {{list.title}}
+      </h3>
+      <mat-divider class="divider"></mat-divider>
+      <div class="card-div" *ngIf="list.cards.length !== 0">
+      <mat-card class="card-content" *ngFor="let card of list.cards">
+        <mat-card-content>
+          <p class="cards">
+            {{card.description}}
+          </p>
+        </mat-card-content>
+      </mat-card>
+    </div>
+    <div class="expansion">
+      <mat-accordion class="add-card-expansion">
+        <mat-expansion-panel hideToggle class="panel"(opened)="panelOpenState = true"
+                                                    (closed)="panelOpenState = false">
+        <mat-expansion-panel-header class="header">
+          <button mat-icon-button class="add-card">
+            <mat-icon>add</mat-icon>
+          </button>
+          <mat-panel-title class="title">
+            <p>Add a card</p>
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <mat-form-field>
+          <mat-label>add description here</mat-label>
+        <textarea matInput
+          name="description"
+          type="text"
+          class="descritpion"
+          appearance="fill"
+          aria-describedby="description"
+          [(ngModel)]="newCard.description"
+          cdkTextareaAutosize
+          #autosize="cdkTextareaAutosize"
+          cdkAutosizeMinRows="1"
+          cdkAutosizeMaxRows="3">
+        </textarea>
+        </mat-form-field>
+        <div class="buttons">
+          <mat-card-actions>
+            <button mat-raised-button class="add" (click)="createCard(list.id)">add card</button>
+          </mat-card-actions>
+        </div>
+        </mat-expansion-panel>
+      </mat-accordion>
+    </div>
+    </mat-card-content>
+  </mat-card>
+</div>
+
+
