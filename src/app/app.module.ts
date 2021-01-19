@@ -33,6 +33,7 @@ import {MatDividerModule} from '@angular/material/divider';
 import {MatTooltipModule} from '@angular/material/tooltip';
 import { AddListDialogComponent } from './add-list-dialog/add-list-dialog.component';
 import {MatExpansionModule} from '@angular/material/expansion';
+import {DragDropModule} from '@angular/cdk/drag-drop';
 
 
 
@@ -76,7 +77,8 @@ import {MatExpansionModule} from '@angular/material/expansion';
     MatDividerModule,
     MatTooltipModule,
     MatExpansionModule,
-    HttpClientModule
+    HttpClientModule,
+    DragDropModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },

@@ -17,4 +17,9 @@ export class ListService {
   createList(list: List) {
     return this.http.post( this.baseUrl + "lists/create", list)
   }
+
+  updateList(list: List) {
+    console.log(list)
+    return this.http.patch(this.baseUrl + 'lists/update?id=' + list.id, list)
+  }
 }

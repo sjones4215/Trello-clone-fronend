@@ -9,7 +9,9 @@ import { Card,} from '../models/card';
 import { List } from '../models/list';
 import { BoardService } from '../services/board.service';
 import { CardService } from '../services/card.service';
-import { HeaderService } from '../services/header.service';
+import {CdkDrag, CdkDragDrop, CdkDragEnd, moveItemInArray, transferArrayItem} from '@angular/cdk/drag-drop';
+import { ListService } from '../services/list.service';
+
 
 @Component({
   selector: 'app-board-page',
@@ -23,12 +25,16 @@ export class BoardPageComponent implements OnInit {
   cards: Card[] = []
   panelOpenState = false;
   newCard: Card = new Card();
+  card: Card
+  message: string = ""
+  cardTest: string
   constructor(
     private boardService: BoardService,
     private activatedRoute: ActivatedRoute,
     public dialog: MatDialog,
     private _ngZone: NgZone,
     private cardService: CardService,
+    private listService: ListService,
     ) { }
 
     @ViewChild('autosize') autosize: CdkTextareaAutosize;
@@ -39,9 +45,15 @@ export class BoardPageComponent implements OnInit {
         this.boardService.getBoard(params.id).subscribe(data => {
           this.board = Object.assign(new Board(), data)
           this.lists = this.board.lists
+          if(this.lists.length === 0) {
+            this.message = "Add a list located on the toolbar to get started."
+          }
           this.lists.forEach(data => {
           this.list = Object.assign(new List(), data)
-          console.log(data)
+          console.log(this.list)
+          })
+          this.list.cards.forEach(data => {
+            this.card = Object.assign(new Card(), data)
           })
         })
       }
@@ -78,5 +90,48 @@ export class BoardPageComponent implements OnInit {
     })
   }
 
+  dropItem(event: CdkDragDrop<string[]>) {
+    if (event.previousContainer === event.container) {
+      moveItemInArray(
+        event.container.data,
+        event.previousIndex,
+        event.currentIndex);
+    }
+    else {
+      transferArrayItem(
+        event.previousContainer.data,
+        event.container.data,
+        event.previousIndex,
+        event.currentIndex);
+    }
+      event.container.data.forEach(data => {
+        this.card = Object.assign(new Card(), data)
+        if (this.card.list_id.toString() !== event.container.id) {
+          var x = event.container.id;
+          var y = +x;
+          this.card.list_id = y
+          this.cardService.updateCard(this.card).subscribe(data => {
+            if(data) {
+              console.log(this.card.list_id)
+            }
+          })
+        }
+          var x = event.container.id;
+          var y = +x;
+          this.list.id = y
+          this.list.cards = event.container.data
+          console.log(this.list.cards)
+          this.listService.updateList(this.list).subscribe()
+      })
+    }
+
+
+  getConnectedList(): any[] {
+    return this.lists.map(x => `${x.id}`);
+  }
+
 
 }
+
+
+

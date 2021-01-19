@@ -16,3 +16,23 @@ mat-form-field.description{
   color: white;
   background: #3d5afe;
 }
+
+mat-form-field.description{
+  display: flex;
+}
+
+.buttons {
+  display: flex;
+  justify-content: space-between;
+}
+
+.submit {
+  color: white;
+  background: #3d5afe;
+}
+
+.cancel {
+  color: white;
+  background: #3d5afe;
+}
+

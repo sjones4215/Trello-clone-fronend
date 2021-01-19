@@ -7,7 +7,7 @@
             {{item.title}}
           </h1>
         </div>
-        <div class="board" (click)="openDialog()">
+        <div class="board" (click)="openDialog()" *ngIf="this.boards.length < 12">
           <button mat-icon-button (click)="openDialog()">
             <mat-icon [inline]="true" class="add">add</mat-icon>
           </button>

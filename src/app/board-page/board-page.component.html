@@ -1,33 +1,61 @@
 <div class="board-title" *ngIf="board">
   <h1 class="text">{{board.title}}</h1>
-  <button  mat-icon-button class="add-list" (click)="addListDialog()">
+  <button *ngIf="this.lists.length !== 5" mat-icon-button class="add-list" (click)="addListDialog()">
     <mat-icon class="add-icon" matTooltip="click here to add a list">note_add</mat-icon>
   </button>
 </div>
 
-  <div class="board-container" *ngIf="lists.length !== 0">
+  <div class="no-lists" *ngIf="lists.length === 0">
+    <h1>{{this.message}}</h1>
+  </div>
+  <div class="board-container" *ngIf="lists.length !== 0" cdkDropListGroup >
     <mat-card class="board-card" *ngFor="let list of lists">
       <mat-card-content>
       <h3 class="header">
         {{list.title}}
       </h3>
       <mat-divider class="divider"></mat-divider>
-      <div class="card-div" *ngIf="list.cards.length !== 0">
-      <mat-card class="card-content" *ngFor="let card of list.cards">
-        <mat-card-content>
-          <p class="cards">
-            {{card.description}}
-          </p>
-        </mat-card-content>
-      </mat-card>
-    </div>
-    <div class="expansion">
-      <mat-accordion class="add-card-expansion">
-        <mat-expansion-panel hideToggle class="panel"(opened)="panelOpenState = true"
-                                                    (closed)="panelOpenState = false">
-        <mat-expansion-panel-header class="header">
-          <button mat-icon-button class="add-card">
-            <mat-icon>add</mat-icon>
+
+
+        <div
+        cdkDropList
+        id = {{list.id}}
+        [cdkDropListData]="list.cards"
+        class="example-list"
+        (cdkDropListDropped)="dropItem($event)"
+        [cdkDropListConnectedTo]="getConnectedList()"
+        >
+        <mat-card class="card-content" *ngFor="let card of list.cards" cdkDrag>
+          <mat-card-content>
+            <p class="cards">
+              {{card.description}}
+            </p>
+            <div class="preview" *cdkDragPreview>
+              <mat-card>
+                {{card.description}}
+              </mat-card>
+            </div>
+          </mat-card-content>
+        </mat-card>
+      </div>
+
+
+
+   <div class="test"
+   cdkDropList
+   id = {{list.id}}
+   [cdkDropListData]="list.cards"
+   class="example-list"
+   (cdkDropListDropped)="dropItem($event)"
+   [cdkDropListConnectedTo]="getConnectedList()"
+   >
+   <div class="expansion" cdkDrag [cdkDragDisabled]="true">
+     <mat-accordion class="add-card-expansion" >
+       <mat-expansion-panel hideToggle class="panel"(opened)="panelOpenState = true"
+       (closed)="panelOpenState = false">
+       <mat-expansion-panel-header class="header" #panel>
+         <button mat-icon-button class="add-card" >
+           <mat-icon>add</mat-icon>
           </button>
           <mat-panel-title class="title">
             <p>Add a card</p>
@@ -35,7 +63,7 @@
         </mat-expansion-panel-header>
         <mat-form-field>
           <mat-label>add description here</mat-label>
-        <textarea matInput
+          <textarea matInput
           name="description"
           type="text"
           class="descritpion"
@@ -47,17 +75,16 @@
           cdkAutosizeMinRows="1"
           cdkAutosizeMaxRows="3">
         </textarea>
-        </mat-form-field>
-        <div class="buttons">
-          <mat-card-actions>
-            <button mat-raised-button class="add" (click)="createCard(list.id)">add card</button>
-          </mat-card-actions>
-        </div>
-        </mat-expansion-panel>
-      </mat-accordion>
+      </mat-form-field>
+      <div class="buttons">
+        <mat-card-actions>
+          <button mat-raised-button class="add" (click)="createCard(list.id)">add card</button>
+          <button mat-icon-button (click)="panel._toggle()"><mat-icon>close</mat-icon></button>
+        </mat-card-actions>
+      </div>
+    </mat-expansion-panel>
+    </mat-accordion>
     </div>
-    </mat-card-content>
-  </mat-card>
-</div>
+  </div>
 
 

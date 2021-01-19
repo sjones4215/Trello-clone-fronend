@@ -14,4 +14,8 @@ export class CardService {
   newCard(card: Card) {
    return this.http.post( this.baseUrl + 'cards/create', card)
   }
+
+  updateCard(card: Card) {
+    return this.http.patch(this.baseUrl + 'cards/update?id=' + card.id, card)
+  }
 }
