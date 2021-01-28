@@ -11,6 +11,7 @@ import { BoardService } from '../services/board.service';
 import { CardService } from '../services/card.service';
 import {CdkDrag, CdkDragDrop, CdkDragEnd, moveItemInArray, transferArrayItem} from '@angular/cdk/drag-drop';
 import { ListService } from '../services/list.service';
+import { HttpEventType } from '@angular/common/http';
 
 
 @Component({
@@ -90,7 +91,7 @@ export class BoardPageComponent implements OnInit {
     })
   }
 
-  dropItem(event: CdkDragDrop<string[]>) {
+  dropItem(event: CdkDragDrop<Card[]>) {
     if (event.previousContainer === event.container) {
       moveItemInArray(
         event.container.data,
@@ -103,7 +104,15 @@ export class BoardPageComponent implements OnInit {
         event.container.data,
         event.previousIndex,
         event.currentIndex);
+        event.previousContainer.data.forEach((x,index)=>{
+          x.order_number = index
+      })
     }
+    //always, recalculate the order of the container (the list to drag)
+      event.container.data.forEach((x,index)=>{
+          x.order_number = index
+          this.cardService.updateCard(x).subscribe()
+      })
       event.container.data.forEach(data => {
         this.card = Object.assign(new Card(), data)
         if (this.card.list_id.toString() !== event.container.id) {
@@ -116,12 +125,6 @@ export class BoardPageComponent implements OnInit {
             }
           })
         }
-          var x = event.container.id;
-          var y = +x;
-          this.list.id = y
-          this.list.cards = event.container.data
-          console.log(this.list.cards)
-          this.listService.updateList(this.list).subscribe()
       })
     }
 

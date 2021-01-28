@@ -22,13 +22,13 @@
         id = {{list.id}}
         [cdkDropListData]="list.cards"
         class="example-list"
-        (cdkDropListDropped)="dropItem($event)"
+        (cdkDropListDropped)="dropItem($event, card)"
         [cdkDropListConnectedTo]="getConnectedList()"
         >
-        <mat-card class="card-content" *ngFor="let card of list.cards" cdkDrag>
+        <mat-card class="card-content" *ngFor="let card of list.cards" cdkDrag [cdkDragData]="card">
           <mat-card-content>
             <p class="cards">
-              {{card.description}}
+             {{card.description}}
             </p>
             <div class="preview" *cdkDragPreview>
               <mat-card>

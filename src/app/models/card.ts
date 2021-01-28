@@ -4,5 +4,6 @@ export class Card {
   title: string
   label: string
   description: string
+  order_number: number
   comment: string
 }
