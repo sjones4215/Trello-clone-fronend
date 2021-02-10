@@ -15,9 +15,7 @@
         {{list.title}}
       </h3>
       <mat-divider class="divider"></mat-divider>
-
-
-        <div
+      <div
         cdkDropList
         id = {{list.id}}
         [cdkDropListData]="list.cards"
@@ -27,7 +25,7 @@
         >
         <mat-card class="card-content" *ngFor="let card of list.cards" cdkDrag [cdkDragData]="card">
           <mat-card-content>
-            <p class="cards">
+            <p class="cards" (dblclick)="cardDialog(card)">
              {{card.description}}
             </p>
             <div class="preview" *cdkDragPreview>
@@ -46,6 +44,7 @@
    id = {{list.id}}
    [cdkDropListData]="list.cards"
    class="example-list"
+   cdkDropListSortingDisabled="true"
    (cdkDropListDropped)="dropItem($event)"
    [cdkDropListConnectedTo]="getConnectedList()"
    >

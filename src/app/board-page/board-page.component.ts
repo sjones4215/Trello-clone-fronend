@@ -1,6 +1,6 @@
 import { CdkTextareaAutosize } from '@angular/cdk/text-field';
 import { Component, NgZone, OnInit, ViewChild } from '@angular/core';
-import { MatDialog, MatDialogConfig, MatDialogRef } from '@angular/material/dialog';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { ActivatedRoute } from '@angular/router';
 import { take } from 'rxjs/operators';
 import { AddListDialogComponent } from '../add-list-dialog/add-list-dialog.component';
@@ -9,9 +9,9 @@ import { Card,} from '../models/card';
 import { List } from '../models/list';
 import { BoardService } from '../services/board.service';
 import { CardService } from '../services/card.service';
-import {CdkDrag, CdkDragDrop, CdkDragEnd, moveItemInArray, transferArrayItem} from '@angular/cdk/drag-drop';
-import { ListService } from '../services/list.service';
-import { HttpEventType } from '@angular/common/http';
+import { CdkDragDrop, moveItemInArray, transferArrayItem} from '@angular/cdk/drag-drop';
+import { Observable } from 'rxjs';
+import { CardDialogComponent } from '../card-dialog/card-dialog.component';
 
 
 @Component({
@@ -21,6 +21,7 @@ import { HttpEventType } from '@angular/common/http';
 })
 export class BoardPageComponent implements OnInit {
   board: Board
+  createdCard: Observable<Card>
   lists: List[] = []
   list: List
   cards: Card[] = []
@@ -35,7 +36,6 @@ export class BoardPageComponent implements OnInit {
     public dialog: MatDialog,
     private _ngZone: NgZone,
     private cardService: CardService,
-    private listService: ListService,
     ) { }
 
     @ViewChild('autosize') autosize: CdkTextareaAutosize;
@@ -51,7 +51,6 @@ export class BoardPageComponent implements OnInit {
           }
           this.lists.forEach(data => {
           this.list = Object.assign(new List(), data)
-          console.log(this.list)
           })
           this.list.cards.forEach(data => {
             this.card = Object.assign(new Card(), data)
@@ -62,7 +61,6 @@ export class BoardPageComponent implements OnInit {
   }
 
   triggerResize() {
-    // Wait for changes to be applied, then trigger textarea resize.
     this._ngZone.onStable.pipe(take(1))
         .subscribe(() => this.autosize.resizeToFitContent(true));
   }
@@ -108,24 +106,27 @@ export class BoardPageComponent implements OnInit {
           x.order_number = index
       })
     }
-    //always, recalculate the order of the container (the list to drag)
       event.container.data.forEach((x,index)=>{
           x.order_number = index
+          var u = event.container.id;
+          var y = +u;
+          x.list_id = y
+          console.log(x.list_id)
           this.cardService.updateCard(x).subscribe()
       })
-      event.container.data.forEach(data => {
-        this.card = Object.assign(new Card(), data)
-        if (this.card.list_id.toString() !== event.container.id) {
-          var x = event.container.id;
-          var y = +x;
-          this.card.list_id = y
-          this.cardService.updateCard(this.card).subscribe(data => {
-            if(data) {
-              console.log(this.card.list_id)
-            }
-          })
-        }
-      })
+      // event.container.data.forEach(data => {
+      //   this.card = Object.assign(new Card(), data)
+      //   if (this.card.list_id.toString() !== event.container.id) {
+      //     var x = event.container.id;
+      //     var y = +x;
+      //     this.card.list_id = y
+      //     this.cardService.updateCard(this.card).subscribe(data => {
+      //       if(data) {
+      //         console.log(this.card.list_id)
+      //       }
+      //     })
+      //   }
+      // })
     }
 
 
@@ -133,7 +134,19 @@ export class BoardPageComponent implements OnInit {
     return this.lists.map(x => `${x.id}`);
   }
 
+  cardDialog(card: Card) {
+    const dialogConfig = new MatDialogConfig();
 
+    dialogConfig.data = {
+      card: card
+    }
+
+    const dialogRef = this.dialog.open(CardDialogComponent, dialogConfig);
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(`Dialog result: ${result}`);
+    });
+  }
 }
 
 

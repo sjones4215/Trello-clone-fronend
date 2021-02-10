@@ -34,6 +34,7 @@ import {MatTooltipModule} from '@angular/material/tooltip';
 import { AddListDialogComponent } from './add-list-dialog/add-list-dialog.component';
 import {MatExpansionModule} from '@angular/material/expansion';
 import {DragDropModule} from '@angular/cdk/drag-drop';
+import { CardDialogComponent } from './card-dialog/card-dialog.component';
 
 
 
@@ -56,6 +57,7 @@ import {DragDropModule} from '@angular/cdk/drag-drop';
     SignOutDialogComponent,
     SpinnerOverlayComponent,
     AddListDialogComponent,
+    CardDialogComponent
   ],
   imports: [
     BrowserModule,
