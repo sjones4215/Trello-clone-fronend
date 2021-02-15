@@ -19,7 +19,7 @@ export class CardDialogComponent implements OnInit {
     }
 
   ngOnInit(): void {
-    console.log(this.card)
+  
   }
 
 }

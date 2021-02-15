@@ -9,7 +9,7 @@ import { Card,} from '../models/card';
 import { List } from '../models/list';
 import { BoardService } from '../services/board.service';
 import { CardService } from '../services/card.service';
-import { CdkDragDrop, moveItemInArray, transferArrayItem} from '@angular/cdk/drag-drop';
+import { CdkDrag, CdkDragDrop, moveItemInArray, transferArrayItem} from '@angular/cdk/drag-drop';
 import { Observable } from 'rxjs';
 import { CardDialogComponent } from '../card-dialog/card-dialog.component';
 
@@ -24,10 +24,8 @@ export class BoardPageComponent implements OnInit {
   createdCard: Observable<Card>
   lists: List[] = []
   list: List
-  cards: Card[] = []
   panelOpenState = false;
   newCard: Card = new Card();
-  card: Card
   message: string = ""
   cardTest: string
   constructor(
@@ -51,9 +49,7 @@ export class BoardPageComponent implements OnInit {
           }
           this.lists.forEach(data => {
           this.list = Object.assign(new List(), data)
-          })
-          this.list.cards.forEach(data => {
-            this.card = Object.assign(new Card(), data)
+          console.log(this.list.cards)
           })
         })
       }
@@ -104,14 +100,13 @@ export class BoardPageComponent implements OnInit {
         event.currentIndex);
         event.previousContainer.data.forEach((x,index)=>{
           x.order_number = index
-      })
-    }
+        })
+      }
       event.container.data.forEach((x,index)=>{
-          x.order_number = index
           var u = event.container.id;
           var y = +u;
           x.list_id = y
-          console.log(x.list_id)
+          x.order_number = index
           this.cardService.updateCard(x).subscribe()
       })
     }

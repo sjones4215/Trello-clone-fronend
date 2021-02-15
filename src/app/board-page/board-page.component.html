@@ -4,11 +4,10 @@
     <mat-icon class="add-icon" matTooltip="click here to add a list">note_add</mat-icon>
   </button>
 </div>
-
-  <div class="no-lists" *ngIf="lists.length === 0">
+<div class="no-lists" *ngIf="lists.length === 0">
     <h1>{{this.message}}</h1>
   </div>
-  <div class="board-container" *ngIf="lists.length !== 0" cdkDropListGroup >
+  <div class="board-container" *ngIf="lists.length !== 0" cdkDropListGroup>
     <mat-card class="board-card" *ngFor="let list of lists">
       <mat-card-content>
       <h3 class="header">
@@ -17,16 +16,17 @@
       <mat-divider class="divider"></mat-divider>
       <div
         cdkDropList
+        #hasCardsList="cdkDropList"
         id = {{list.id}}
         [cdkDropListData]="list.cards"
         class="example-list"
-        (cdkDropListDropped)="dropItem($event, card)"
+        (cdkDropListDropped)="dropItem($event)"
         [cdkDropListConnectedTo]="getConnectedList()"
         >
-        <mat-card class="card-content" *ngFor="let card of list.cards" cdkDrag [cdkDragData]="card">
+        <mat-card class="card-content" *ngFor="let card of list.cards" cdkDrag [cdkDragData]="card" (dblclick)="cardDialog(card)">
           <mat-card-content>
-            <p class="cards" (dblclick)="cardDialog(card)">
-             {{card.description}}
+            <p class="cards">
+             {{card.order_number}}-{{card.description}}
             </p>
             <div class="preview" *cdkDragPreview>
               <mat-card>
@@ -37,23 +37,12 @@
         </mat-card>
       </div>
 
-
-
-   <div class="test"
-   cdkDropList
-   id = {{list.id}}
-   [cdkDropListData]="list.cards"
-   class="example-list"
-   cdkDropListSortingDisabled="true"
-   (cdkDropListDropped)="dropItem($event)"
-   [cdkDropListConnectedTo]="getConnectedList()"
-   >
-   <div class="expansion" cdkDrag [cdkDragDisabled]="true">
-     <mat-accordion class="add-card-expansion" >
-       <mat-expansion-panel hideToggle class="panel"(opened)="panelOpenState = true"
-       (closed)="panelOpenState = false">
-       <mat-expansion-panel-header class="header" #panel>
-         <button mat-icon-button class="add-card" >
+<div class="expansion">
+  <mat-accordion class="add-card-expansion" >
+    <mat-expansion-panel hideToggle class="panel"(opened)="panelOpenState = true"
+      (closed)="panelOpenState = false">
+      <mat-expansion-panel-header class="header" #panel>
+        <button mat-icon-button class="add-card" >
            <mat-icon>add</mat-icon>
           </button>
           <mat-panel-title class="title">
@@ -82,8 +71,7 @@
         </mat-card-actions>
       </div>
     </mat-expansion-panel>
-    </mat-accordion>
-    </div>
-  </div>
+  </mat-accordion>
+</div>
 
 
