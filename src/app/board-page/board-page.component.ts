@@ -114,19 +114,6 @@ export class BoardPageComponent implements OnInit {
           console.log(x.list_id)
           this.cardService.updateCard(x).subscribe()
       })
-      // event.container.data.forEach(data => {
-      //   this.card = Object.assign(new Card(), data)
-      //   if (this.card.list_id.toString() !== event.container.id) {
-      //     var x = event.container.id;
-      //     var y = +x;
-      //     this.card.list_id = y
-      //     this.cardService.updateCard(this.card).subscribe(data => {
-      //       if(data) {
-      //         console.log(this.card.list_id)
-      //       }
-      //     })
-      //   }
-      // })
     }
 
 
