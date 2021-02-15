@@ -32,8 +32,6 @@ export class HomeComponent implements OnInit {
   }
 
   boardProfile(board: Board) {
-    this.headerService.setHeaderToNull()
-    this.headerService.saveBoard(board)
     this.router.navigate(['board-page/' + board.id])
   }
 

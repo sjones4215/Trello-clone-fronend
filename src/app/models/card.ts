@@ -1,3 +1,6 @@
+import { from } from "rxjs"
+import { Comment } from "./comment"
+
 export class Card {
   id: number
   list_id: number
@@ -5,5 +8,5 @@ export class Card {
   label: string
   description: string
   order_number: number
-  comment: string
+  comments: Comment[] = []
 }

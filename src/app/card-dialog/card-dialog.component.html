@@ -1,8 +1,25 @@
 <div class="container">
   <h3 class="title">{{this.card.description}}</h3>
     <mat-divider></mat-divider>
-  <p>{{this.card.comment}}</p>
+  <p *ngFor="let comment of this.card.comments">
+    {{comment.body}}
+  </p>
   <mat-form-field>
-    
-  </mat-form-field>
+    <mat-label>add comment</mat-label>
+          <textarea matInput
+          name="description"
+          type="text"
+          class="descritpion"
+          appearance="fill"
+          aria-describedby="description"
+          [(ngModel)]="this.newComment.body"
+          cdkTextareaAutosize
+          #autosize="cdkTextareaAutosize"
+          cdkAutosizeMinRows="1"
+          cdkAutosizeMaxRows="3">
+        </textarea>
+    </mat-form-field>
+    <div class="buttons">
+      <button mat-raised-button class="submit" (click)="createComment()">New Comment</button>
+    </div>
 </div>
