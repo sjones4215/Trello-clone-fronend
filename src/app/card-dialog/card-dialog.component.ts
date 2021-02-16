@@ -19,7 +19,8 @@ export class CardDialogComponent implements OnInit {
   constructor(
     private cardService: CardService,
     private commentService: CommentService,
-    private dialogRef: MatDialogRef<BoardPageComponent>, @Inject(MAT_DIALOG_DATA)data ) { this.card = data.card }
+    private dialogRef: MatDialogRef<BoardPageComponent>, @Inject(MAT_DIALOG_DATA)data )
+    { this.card = data.card }
 
   ngOnInit(): void {
     debugger
