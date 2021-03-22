@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { SpinnerOverlayComponent } from './spinner-overlay.component';
+import { EditDialogComponent } from './edit-dialog.component';
 
-describe('SpinnerOverlayComponent', () => {
-  let component: SpinnerOverlayComponent;
-  let fixture: ComponentFixture<SpinnerOverlayComponent>;
+describe('EditDialogComponent', () => {
+  let component: EditDialogComponent;
+  let fixture: ComponentFixture<EditDialogComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ SpinnerOverlayComponent ]
+      declarations: [ EditDialogComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(SpinnerOverlayComponent);
+    fixture = TestBed.createComponent(EditDialogComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

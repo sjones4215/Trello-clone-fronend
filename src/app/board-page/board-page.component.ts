@@ -12,6 +12,7 @@ import { CardService } from '../services/card.service';
 import { CdkDrag, CdkDragDrop, moveItemInArray, transferArrayItem} from '@angular/cdk/drag-drop';
 import { Observable } from 'rxjs';
 import { CardDialogComponent } from '../card-dialog/card-dialog.component';
+import { EditDialogComponent } from '../edit-dialog/edit-dialog.component';
 
 
 @Component({
@@ -28,6 +29,7 @@ export class BoardPageComponent implements OnInit {
   newCard: Card = new Card();
   message: string = ""
   cardTest: string
+  iconVisible = false
   constructor(
     private boardService: BoardService,
     private activatedRoute: ActivatedRoute,
@@ -129,6 +131,21 @@ export class BoardPageComponent implements OnInit {
       console.log(`Dialog result: ${result}`);
     });
   }
+
+  editDialog(card: Card) {
+    const dialogConfig = new MatDialogConfig();
+
+    dialogConfig.data = {
+      card: card
+    }
+
+    const dialogRef = this.dialog.open(EditDialogComponent, dialogConfig);
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(`Dialog result: ${result}`);
+    });
+  }
+
 }
 
 
